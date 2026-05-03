@@ -1,6 +1,7 @@
 ﻿string welcomeMessage = "Boas vindas ao Screen Sound!";
+List<string> bandsList = new List<string> { "The Beatles", "AC/DC", "Barenaked Ladies" };
 
-void DisplayMessage()
+void DisplayLogo()
 {
     Console.WriteLine(@"
 ░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
@@ -15,6 +16,8 @@ void DisplayMessage()
 
 void DisplayMenuOptions()
 {
+    Console.Clear();
+    DisplayLogo();
     Console.WriteLine("\n1 - Registrar uma banda");
     Console.WriteLine("2 - Mostrar todas as bandas");
     Console.WriteLine("3 - Avaliar uma banda");
@@ -31,7 +34,7 @@ void DisplayMenuOptions()
             RegisterBand();
             break;
         case 2:
-            Console.WriteLine("Você escolheu a opção " + numericChosenOption);
+            DisplayRegisteredBands();
             break;
         case 3:
             Console.WriteLine("Você escolheu a opção " + numericChosenOption);
@@ -51,14 +54,32 @@ void DisplayMenuOptions()
 void RegisterBand()
 {
     Console.Clear();
+    Console.WriteLine("******************");
     Console.WriteLine("Registro de bandas");
+    Console.WriteLine("******************\n");
     Console.Write("Digite o nome da banda que deseja registrar: ");
-    string nomeDaBanda = Console.ReadLine()!;
-    Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
+    string bandName = Console.ReadLine()!;
+    bandsList.Add(bandName);
+    Console.WriteLine($"A banda {bandName} foi registrada com sucesso!");
     Thread.Sleep(2000);
-    Console.Clear();
     DisplayMenuOptions();
 }
 
-DisplayMessage();
+void DisplayRegisteredBands()
+{
+    Console.Clear();
+    Console.WriteLine("************************************");
+    Console.WriteLine("Exibindo todas as bandas registradas");
+    Console.WriteLine("************************************\n");
+    
+    foreach (string band in bandsList)
+    {
+        Console.WriteLine($"Banda: {band}");
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
+    Console.ReadKey();
+    DisplayMenuOptions();
+}
+
 DisplayMenuOptions();
