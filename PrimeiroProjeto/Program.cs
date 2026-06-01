@@ -42,7 +42,7 @@ void DisplayMenuOptions()
             RateBand();
             break;
         case 4:
-            BandAverage();
+            DisplayAverage();
             break;
         case 0:
             Console.WriteLine("Tchau tchau :)");
@@ -113,7 +113,7 @@ void RateBand()
     }
 }
 
-void BandAverage()
+void DisplayAverage()
 {
     Console.Clear();
     DisplayOptionsTitle("Exibir média da banda");
@@ -122,7 +122,7 @@ void BandAverage()
     if (bandsList.ContainsKey(bandName))
     {
         double average = bandsList[bandName].Average();
-        Console.WriteLine($"\nA nota média da banda {bandName} é {average}!");
+        Console.WriteLine($"\nA nota média da banda {bandName} é {average}.");
         Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
         Console.ReadKey();
         DisplayMenuOptions();
